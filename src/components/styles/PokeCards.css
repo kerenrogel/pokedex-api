@@ -1,0 +1,6 @@
+.card img {
+	-moz-user-select: none;
+	-website-user-select: none;
+	user-select: none;
+	-o-user-select: none;
+}
