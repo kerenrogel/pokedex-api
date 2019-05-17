@@ -2,7 +2,6 @@ import React from 'react';
 import PokemonList from '../PokemonList';
 import Pokemon from '../Pokemon';
 
-
 const Dashboard = () => {
   return (
     <div className="container">
