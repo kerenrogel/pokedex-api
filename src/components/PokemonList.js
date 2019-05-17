@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PokemonCard from './PokemonCard';
+import './styles/PokeList.css'
 
 class PokemonList extends Component {
  	state = {
-		url: 'https://pokeapi.co/api/v2/pokemon/?limit=100',
+		url: 'https://pokeapi.co/api/v2/pokemon/?limit=8',
 		pokemon: null
 	};
 
@@ -16,7 +17,7 @@ class PokemonList extends Component {
     return(
 			<React.Fragment>
 				{this.state.pokemon ? ( 
-					<div className="row">
+					<div className="row pokemon-list">
 						{this.state.pokemon.map(pokemon => (
 							<PokemonCard
 								key={pokemon.name} 

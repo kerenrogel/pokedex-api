@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import spinner from '../components/spinner.gif';
 import '../components/styles/PokeCards.css';
 import { Link } from 'react-router-dom';
+import Pokemon from './Pokemon';
+import axios from 'axios';
 
 const Sprite = styled.img`
 	width: 5em;
@@ -28,8 +30,16 @@ class PokemonCard extends Component {
 		imageUrl: '',
 		pokemonIndex: '',
 		imageLoading: true,
-		toManyRequests: false
+		toManyRequests: false,
+		pokemon: {}
 	};
+
+	async handleClick (id) {
+		const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+		this.setState({pokemon: res.data['results']});
+		console.log("results: " + JSON.stringify(res));
+	
+  }
 
 	componentDidMount() {
 		const name =  this.props.name;
@@ -47,9 +57,8 @@ class PokemonCard extends Component {
   render() {
     return(
 	    <div className="col-md-3 col-sm-6 mb-2">
-	        <StyledLink to={`pokemon/${this.state.pokemonIndex}`}>
+	        <StyledLink to={`${this.state.pokemonIndex}`}>
 	        <div className="card">
-	        	<h5 className="card-header">{this.state.pokemonIndex}</h5>
 	        	{this.state.imageLoading ? (
 	        		<img 
 	        			src={spinner} 
@@ -58,6 +67,7 @@ class PokemonCard extends Component {
 	        		/>
 	        	) : null}
 	        	<Sprite 
+	        		onClick={() => this.handleClick(this.state.pokemonIndex)}
 	        		className="card-img-top rounded mx-auto mt-2"
 		        	onLoad={() => this.setState({ imageLoading: false })}
 		        	onError={() => this.setState({ toManyRequests: true })}
@@ -77,7 +87,7 @@ class PokemonCard extends Component {
 	        		) : null
 	        	}
 	        	<div className="card-body mx-auto">
-	        		<h6 className="card-title">{this.state.name
+	        		<small className="card-title">{this.state.name
 	        			.toLowerCase()
 	        			.split(' ')
 	        			.map(
@@ -85,7 +95,7 @@ class PokemonCard extends Component {
 	        			)
 	        			.join(' ')
 	        		}
-	        		</h6>
+	        		</small>
 	        	</div>
 	        </div>
 	      </StyledLink>
