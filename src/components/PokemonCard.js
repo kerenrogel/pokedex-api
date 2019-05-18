@@ -34,12 +34,14 @@ class PokemonCard extends Component {
 		pokemon: {}
 	};
 
-	// async handleClick (id) {
-	// 	const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-	// 	this.setState({pokemon: res.data['results']});
-	// 	console.log("results: " + JSON.stringify(res));
+	async handleClick (id) {
+		const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+		this.setState({pokemon: res.data['results']});
+		//console.log("results: " + JSON.stringify(res));
+		console.log("results card: " + id);
+		const pokemon = new Pokemon(id);
 	
-	// }
+	}
 
 	componentDidMount() {
 		const name =  this.props.name;

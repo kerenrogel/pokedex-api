@@ -26,7 +26,7 @@ class NavBar extends Component {
 	      </Branding>
 	    </NavBarStyle>
   	);
-  }a
+  }
 }
 
 export default NavBar;

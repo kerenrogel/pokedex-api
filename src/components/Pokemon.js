@@ -11,7 +11,13 @@ const TYPE_COLORS = {
 }
 
 class Pokemon extends Component {
+	constructor(id) {
+		super();
+		this.id = id;
+		this.state.id = id;
+  }
 	state = {
+		id: '',
 		name: '',
 		pokemonIndex: '',
 		imageUrl: '',
@@ -36,15 +42,16 @@ class Pokemon extends Component {
 		hatchSteps: ''
 	};
 
-	componentDidMount() {
-		const { pokemonIndex } = id;
+	async componentDidMount() {
+		console.log("id is: "+this.state.id);
+		const pokemonIndex = "2";
 
 		// URL for pokemon information
 		const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
 		const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
 
 		// Get pokemon Information
-		const pokemonRes = axios.get(pokemonUrl);
+		const pokemonRes = await axios.get(pokemonUrl);
 		
 		const name = pokemonRes.data.name;
 		const imageUrl = pokemonRes.data.sprites.front_default;
@@ -148,6 +155,8 @@ class Pokemon extends Component {
 			hatchSteps
 		});
 	});
+
+	
 
 	this.setState({
 		imageUrl,
@@ -398,7 +407,7 @@ class Pokemon extends Component {
 												</div>
 
 												<div 
-													clasddsName="progress-bar"
+													className="progress-bar"
 													role="progressBar"
 													style={{
 														width: `${this.state.genderRatioMale}%`,

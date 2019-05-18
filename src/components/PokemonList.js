@@ -25,6 +25,7 @@ class PokemonList extends Component {
 								key={pokemon.name} 
 								name={pokemon.name}
 								url={pokemon.url}
+								id="3"
 							/>
 						))} 
 					</div>
