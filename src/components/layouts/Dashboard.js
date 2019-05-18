@@ -4,16 +4,18 @@ import Pokemon from '../Pokemon';
 import axios from 'axios';
 
 class Dashboard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      testLink: "5",
+      pokemonLink: "1", //homelink
       pokemonIndex: ''
     }
   }
   onGreet() {
     alert("Im clicked!");
   }
+
+
 
   async handleClick (id) {
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -23,11 +25,13 @@ class Dashboard extends Component {
     const pokemon = new Pokemon(id);
   
   }
+
+
   
 
   onChangePokemonName(newPokemon){
     this.setState({
-      testLink: newPokemon
+      pokemonLink: newPokemon
     });
   }
   render () {
@@ -39,10 +43,12 @@ class Dashboard extends Component {
               	<PokemonList 
                   greet={this.onGreet}
                   changePokemon={this.onChangePokemonName.bind(this)} 
+                  initialPokemonName={this.state.pokemonLink}
                    />	                    
+                  }
   							</div>
   							<div className="col-md-6">
-  								<Pokemon testLink={this.state.testLink} />
+  								<Pokemon pokemonLink={this.state.pokemonLink} />
   							</div>
           </div>                       
         </div>

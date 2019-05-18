@@ -11,7 +11,7 @@ class PokemonList extends Component {
 	 	this.state = {
 			url: 'https://pokeapi.co/api/v2/pokemon/?limit=8',
 			pokemon: null,
-			pokemonLink: "Change me"
+			pokemonLink: props.initialPokemonName
 		}
 	}
 
@@ -23,6 +23,12 @@ class PokemonList extends Component {
 	onChangePokemon(pokemonLink) {
 		this.props.changePokemon(this.state.pokemonLink);
 	
+	}
+
+	onHandleChange(event) {
+		this.setState({
+			pokemonLink: event.target.value
+		})
 	}
   render() {
     return(
@@ -37,6 +43,9 @@ class PokemonList extends Component {
 								url={pokemon.url}
 							/>
 						))} 
+						<input type="text" value={this.state.pokemonLink} 
+							onChange={(event) => this.onHandleChange(event)}/>
+
 						<button onClick={this.props.greet}>keren</button>
 						<button onClick={() => this.onChangePokemon()}>change</button>
 					</div>
