@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PokemonCard from './PokemonCard';
 import './styles/PokeList.css'
+import Dashboard from './layouts/Dashboard';
+
 
 class PokemonList extends Component {
  	state = {
