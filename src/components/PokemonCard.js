@@ -69,7 +69,6 @@ class PokemonCard extends Component {
 					/>
 				) : null}
 				<Sprite 
-					onClick={() => this.handleClick(this.state.pokemonIndex)}
 					className="card-img-top rounded mx-auto mt-2"
 					onLoad={() => this.setState({ imageLoading: false })}
 					onError={() => this.setState({ toManyRequests: true })}

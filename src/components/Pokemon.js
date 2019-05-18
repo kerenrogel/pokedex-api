@@ -11,10 +11,11 @@ const TYPE_COLORS = {
 }
 
 class Pokemon extends Component {
-	constructor(id) {
-		super();
-		this.id = id;
-		this.state.id = id;
+  constructor(props) {
+    super(props);
+    
+    // Initialized, but not enough
+    this.state = { types: [], name: '', stats:'' };
   }
 	state = {
 		id: '',
@@ -43,8 +44,9 @@ class Pokemon extends Component {
 	};
 
 	async componentDidMount() {
-		console.log("id is: "+this.state.id);
-		const pokemonIndex = "2";
+		console.log("id is: " + this.state.id);
+		const pokemonIndex = this.props.testLink;
+		console.log("hello here:" + pokemonIndex);
 
 		// URL for pokemon information
 		const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
@@ -187,7 +189,8 @@ class Pokemon extends Component {
 					<div className="card-header">
 						<div className="row">
 							<div className="col-5">
-								<h5>{this.state.pokemonIndex}</h5>
+								<h5>{this.props.testLink}</h5>
+								<h2>{this.props.testLink}</h2>
 							</div>
 							<div className="col-7">
 								<div className="float-right">
